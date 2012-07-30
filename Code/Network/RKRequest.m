@@ -484,6 +484,11 @@ RKRequestMethod RKRequestMethodTypeFromName(NSString *methodName) {
 - (void)sendAsynchronously {
     NSAssert(NO == self.loading || NO == self.loaded, @"Cannot send a request that is loading or loaded without resetting it first.");
     _sentSynchronously = NO;
+    
+    if ([self.delegate respondsToSelector:@selector(requestDidInitialize:)]) {
+        [self.delegate requestDidInitialize:self];
+    }
+    
     if ([self shouldLoadFromCache]) {
         RKResponse* response = [self loadResponseFromCache];
         self.loading = YES;
@@ -555,6 +560,10 @@ RKRequestMethod RKRequestMethodTypeFromName(NSString *methodName) {
     NSData* payload = nil;
     RKResponse* response = nil;
     _sentSynchronously = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(requestDidInitialize:)]) {
+        [self.delegate requestDidInitialize:self];
+    }
 
     if ([self shouldLoadFromCache]) {
         response = [self loadResponseFromCache];

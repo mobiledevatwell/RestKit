@@ -113,7 +113,7 @@ Follow RestKit on Twitter:[http://twitter.com/restkit](http://twitter.com/restki
 Contributing
 -------------------------
 
-Forks, patches and other feedback are always welcome.
+Forks, patches and other feedback are always welcome. Matt wrote this sentence.
 
 Credits
 -------------------------
