@@ -787,6 +787,14 @@ typedef void(^RKRequestDidFailLoadWithErrorBlock)(NSError *error);
 ///-----------------------------------------------------------------------------
 
 /**
+ Tells the delegate the request was configured. This gives the delegate a chance to override any request-specific 
+ settings they want.
+ 
+ @param request The RKRequest object that was configured.
+ */
+- (void)requestDidInitialize:(RKRequest *)request;
+
+/**
  Tells the delegate the request is about to be prepared for sending to the remote host.
 
  @param request The RKRequest object that is about to be sent.
