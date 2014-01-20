@@ -206,6 +206,7 @@ return __VA_ARGS__;                                                             
     RKResponseIgnoreDelegateIfCancelled();
     RKLogDebug(@"NSHTTPURLResponse Status Code: %ld", (long) [response statusCode]);
     RKLogDebug(@"Headers: %@", [response allHeaderFields]);
+    RKLogDebug(@"URL: %@", [response URL]);
     _httpURLResponse = [response retain];
     [_request invalidateTimeoutTimer];
     if ([[_request delegate] respondsToSelector:@selector(request:didReceiveResponse:)]) {
