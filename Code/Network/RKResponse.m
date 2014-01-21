@@ -197,7 +197,7 @@ return __VA_ARGS__;                                                             
     RKResponseIgnoreDelegateIfCancelled();
     [_body appendData:data];
     [_request invalidateTimeoutTimer];
-    if ([[_request delegate] respondsToSelector:@selector(request:didReceiveData:totalBytesReceived:totalBytesExpectedToReceive:)]) {
+    if ([_request delegate] != nil && [[_request delegate] respondsToSelector:@selector(request:didReceiveData:totalBytesReceived:totalBytesExpectedToReceive:)]) {
         [[_request delegate] request:_request didReceiveData:[data length] totalBytesReceived:[_body length] totalBytesExpectedToReceive:_httpURLResponse.expectedContentLength];
     }
 }
@@ -209,7 +209,7 @@ return __VA_ARGS__;                                                             
     RKLogDebug(@"URL: %@", [response URL]);
     _httpURLResponse = [response retain];
     [_request invalidateTimeoutTimer];
-    if ([[_request delegate] respondsToSelector:@selector(request:didReceiveResponse:)]) {
+    if ([_request delegate] != nil && [[_request delegate] respondsToSelector:@selector(request:didReceiveResponse:)]) {
       [[_request delegate] request:_request didReceiveResponse:self];
     }
 }
@@ -243,7 +243,7 @@ return __VA_ARGS__;                                                             
     RKResponseIgnoreDelegateIfCancelled();
     [_request invalidateTimeoutTimer];
 
-    if ([[_request delegate] respondsToSelector:@selector(request:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:)]) {
+    if ([_request delegate] != nil && [[_request delegate] respondsToSelector:@selector(request:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:)]) {
         [[_request delegate] request:_request didSendBodyData:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
     }
 }
